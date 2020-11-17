@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import Waiter from './components/Waiter';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 // import { Provider } from 'react-redux'
 // import store from './store'
 // import Waiter from './components/Waiter';
