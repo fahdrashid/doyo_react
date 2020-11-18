@@ -1,32 +1,29 @@
 import Axios from "axios";
 import { useEffect } from "react";
 
-function Modal({show, changeShow, id}) {
-
+function Modal({ show, changeShow, id }) {
 
   useEffect(() => {
-    if(id!==undefined){
-    Axios.post(`http://localhost:8000/dashboard/called_items/${id}`)
-      .then(res => {
-        console.log(res.data)
-      })
-      .catch(err => console.log(err))
+    if (id !== undefined) {
+      Axios.post(`http://localhost:8000/dashboard/called_items/${id}`)
+        .then(res => {
+          console.log(res.data)
+        })
+        .catch(err => console.log(err))
     }
   }, [id]);
 
   return (
     <div>
       {/* Called item Pop_up Start here */}
-      <div className="syncCalledModal" style={show ? {display:"block"} : {display:"none"}} >
+      <div className="syncCalledModal" style={show ? { display: "block" } : { display: "none" }} >
         <div className="popup-overlayCalled">
           {/*Creates the popup content*/}
           <div className="popup-content">
             <div className="modalCalledBody">
               {/* Top Navbar */}
               <div className="top-nav">
-                <div className="close cursorPointer" onClick={changeShow}>
-                  ×
-                      </div>
+                <div className="close cursorPointer" onClick={changeShow}>×</div>
               </div>
               <div className="calledHeading">
                 <div className="calledText">Called Items:
