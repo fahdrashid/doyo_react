@@ -15,10 +15,13 @@ function Waiter() {
   const [type, setType] = useState(params?.type ? params?.type : 'favourites');
   const [modalShow, setShow] = useState(false);
   const [id, setId] = useState();
-
+  const headers = {
+    "x-access-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOjIsImV4cCI6MTYwNjI5MTY3OX0.z1TyVOtelGWjOGcGx29i4EllAmsN6pLP8VdePtZ5dAM"
+  }
 
   useEffect(() => {
-    Axios.post(`http://localhost:8000/dashboard/waiter`, { type: type })
+    
+    Axios.post(`http://localhost:8000/dashboard/waiter`, { type: type }, { headers })
       .then(res => {
         setOrders(res.data);
         setType(type);
@@ -63,7 +66,7 @@ function Waiter() {
       {/* items Counter Start */}
       <div className="itemcounter">
         <div className="totalItem">
-          <div className="digits orders-length">{orders.order_length}</div>
+          <div className="digits orders-length">{orders.orders_length}</div>
           <p className="text">Total Items</p>
         </div>
         <div className="totalItem">
@@ -97,7 +100,7 @@ function Waiter() {
       {/* Tabs End */}
       {/* Tab-Content Start */}
       <div className="row tabData">
-        {orders?.order?.map((order, index) => (
+        {orders?.orders?.map((order, index) => (
           <div key={index} className="boxes">
             <div className="startTimer">
               <div className={`number ${parseInt(order?.time) > 60 ? "" : parseInt(order?.time) > 30 ? "four" : "six"}`}>
