@@ -15,13 +15,9 @@ function Waiter() {
   const [type, setType] = useState(params?.type ? params?.type : 'favourites');
   const [modalShow, setShow] = useState(false);
   const [id, setId] = useState();
-  const headers = {
-    "x-access-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOjIsImV4cCI6MTYwNjI5MTY3OX0.z1TyVOtelGWjOGcGx29i4EllAmsN6pLP8VdePtZ5dAM"
-  }
 
   useEffect(() => {
-    
-    Axios.post(`http://localhost:8000/dashboard/waiter`, { type: type }, { headers })
+    Axios.post(`http://localhost:8000/dashboard/waiter`, { type: type }, { headers: { "x-access-token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOjIsImV4cCI6MTYwNjI5MTY3OX0.z1TyVOtelGWjOGcGx29i4EllAmsN6pLP8VdePtZ5dAM" } })
       .then(res => {
         setOrders(res.data);
         setType(type);
@@ -66,15 +62,15 @@ function Waiter() {
       {/* items Counter Start */}
       <div className="itemcounter">
         <div className="totalItem">
-          <div className="digits orders-length">{orders.orders_length}</div>
+          <div className="digits orders-length">{orders?.orders_length ? orders?.orders_length : 0}</div>
           <p className="text">Total Items</p>
         </div>
         <div className="totalItem">
-          <div className="digitYellow called-orders-length">{orders.called_orders_length}</div>
+          <div className="digitYellow called-orders-length">{orders?.called_orders_length ? orders?.called_orders_length : 0}</div>
           <p className="text">Called</p>
         </div>
         <div className="totalItem">
-          <div className="digits pending-orders-length">{orders.pending_orders_length}</div>
+          <div className="digits pending-orders-length">{orders?.pending_orders_length ? orders?.pending_orders_length : 0}</div>
           <p className="text">Pending</p>
         </div>
       </div>
